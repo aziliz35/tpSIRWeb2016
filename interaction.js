@@ -19,6 +19,8 @@ function DnD(canvas, interactor) {
 	 this.x1=posMouse.x;
 	 this.y1=posMouse.y;
 	 console.log(this.dessiner);
+	 //afficher les coordonnées 
+	 console.log(this.x1,this.y1);
 	 }.bind(this);
 	 
 	 this.deplacement= function(evt) {
@@ -27,11 +29,15 @@ function DnD(canvas, interactor) {
 	 this.x2=posMouse.x;
 	 this.y2=posMouse.y;
 	 console.log(this.dessiner);
+	 //afficher les coordonnées 
+	 console.log(this.x1,this.y1);
 	 }.bind(this);
 	 
 	 this.relachement= function(evt) {
 	 this.dessiner=false;
 	 console.log(this.dessiner);
+	  //afficher les coordonnées 
+	 console.log(this.x1,this.y1);
 	 }.bind(this);
 
 	// Associer les fonctions prÃ©cÃ©dentes aux Ã©vÃ¨nements du canvas.
