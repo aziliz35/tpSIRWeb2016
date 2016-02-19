@@ -12,6 +12,40 @@ function Pencil(ctx, drawing, canvas) {
 	new DnD(canvas, this);
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
+	
+	this.onInteractionStart=function(DnD){
+	//initialiser la couleur et l'épaisseur
+		this.currLineWidth=document.getElementById("spinnerWidth").value;
+		this.currColour =document.getElementById("colour").value;
+		console.log(this.currLineWidth,this.currColour);
+		
+	//tester la forme choisi (ligne ou rectangle)
+ 		if(document.getElementById("butLine").checked){
+ 			this.currentshape = new Ligne(DnD.x1,DnD.y1,DnD.x2,DnD.y2,this.currColour,this.currLineWidth);
+ 		}else if (document.getElementById("butRect").checked){
+ 			this.currentshape = new Rectangle(0,0,DnD.x1,DnD.y1,this.currLineWidth,this.currColour); }
+ 			
+ }.bind(this);
+ 
+ this.onInteractionUpdate = function(DnD) {
+ 		//récupérer les coordonnées 
+ 		if(document.getElementById("butLine").checked){
+ 			this.currentshape.x1=DnD.x1;
+ 			this.currentshape.y1=DnD.y1;
+ 			this.currentshape.x2=DnD.x2;
+ 			this.currentshape.y2=DnD.y2;
+ 		}else if (document.getElementById("butRect").checked){
+ 			this.currentshape.x1=DnD.x1;
+ 			this.currentshape.y1=DnD.y1;
+ 			this.currentshape.width=DnD.x2 - DnD.x1;
+ 			this.currentshape.height=DnD.y2 - DnD.y1;
+ 		}
+ 	}.bind(this);
+ 	
+ 	this.onInteractionEnd = function() {
+ 			//dessiner la forme
+ 			this.currentshape.paint(ctx);
+ 	}.bind(this);
 };
 
 

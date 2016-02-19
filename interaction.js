@@ -19,7 +19,8 @@ function DnD(canvas, interactor) {
 	 this.x1=posMouse.x;
 	 this.y1=posMouse.y;
 	 console.log(this.dessiner);
-	 //afficher les coordonnées 
+	 interactor.onInteractionStart(this);
+	 //afficher les coordonnï¿½es 
 	 console.log(this.x1,this.y1);
 	 }.bind(this);
 	 
@@ -29,14 +30,17 @@ function DnD(canvas, interactor) {
 	 this.x2=posMouse.x;
 	 this.y2=posMouse.y;
 	 console.log(this.dessiner);
-	 //afficher les coordonnées 
+	 interactor.onInteractionUpdate(this);
+	 //afficher les coordonnï¿½es 
 	 console.log(this.x1,this.y1);
 	 }.bind(this);
 	 
 	 this.relachement= function(evt) {
 	 this.dessiner=false;
 	 console.log(this.dessiner);
-	  //afficher les coordonnées 
+	 interactor.onInteractionEnd(this);
+	 
+	  //afficher les coordonnï¿½es 
 	 console.log(this.x1,this.y1);
 	 }.bind(this);
 
