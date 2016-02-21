@@ -31,22 +31,32 @@ Drawing.prototype.paint = function(ctx) {
 
 };
 
-
+ var id=0;//id de l'élément de la liste 
 function updateShapeListe (Drawing){
  	var contenuhtml=""; // la ligne html a ajouté dans liste ShapeListe
- 	var idform=document.getElementById('shapeList').childNodes.length;//la taille de la liste  (id de la forme)
- 	//alert(listform);
- 	
- 		if(pencil.currenttype=="Rectangle"){
+
+ 	if(pencil.currenttype=="Rectangle"){
  			//alert(pencil.currenttype);
- 			contenuhtml="<li class='list-unstyled' id='shapeList("+idform+")'>Rectangle "+idform+": <button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-sign'></span></button></li>";
+ 			contenuhtml="<li class='list-unstyled' id=id"+id+">Rectangle "+id+": <button type='button' class='btn btn-default' onClick='drawing.deleteform("+id+")'><span class='glyphicon glyphicon-remove-sign'></span></button></li>";
  		}
  		if(pencil.currenttype=="Ligne"){
  			//alert(pencil.currenttype);
- 			contenuhtml="<li class='list-unstyled' id='shapeList("+idform+")'>Ligne "+idform+": <button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-sign'></span></button></li>";
+ 			contenuhtml="<li class='list-unstyled' id=id"+id+">Ligne "+id+": <button type='button' class='btn btn-default' onClick='drawing.deleteform("+id+")'><span class='glyphicon glyphicon-remove-sign'></span></button></li>";
+			
  		}
- 		
+ 		id++;
 		 
  	 document.getElementById('shapeList').innerHTML+=contenuhtml; //ajouter dans la liste
 
+ };
+Drawing.prototype.deleteform = function(id){
+ 	//alert(id);
+ 	var index = document.getElementById('id'+id);
+ 	index.remove();//supprimer l'élément et le button de la liste 
+	this.deleteSh(id-1); // supprimer la forme 
+
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+  	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	drawing.paint(ctx); // recréer canvas
+		
  };
