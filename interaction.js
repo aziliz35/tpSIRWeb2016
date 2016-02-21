@@ -41,7 +41,7 @@ function DnD(canvas, interactor) {
 	 interactor.onInteractionEnd(this);
 	 
 	  //afficher les coordonn�es 
-	 console.log(this.x1,this.y1);
+	 console.log(this.x2,this.y2);
 	 }.bind(this);
 
 	// Associer les fonctions précédentes aux évènements du canvas.
